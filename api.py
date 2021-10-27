@@ -14,7 +14,6 @@ def index():
     return jsonify(welcome_message)
 
 
-
 @app.route('/prime/<int:number>', methods=['GET'])
 def display_prime(number):
     # Create a boolean array "prime[0..n]" and
@@ -42,7 +41,7 @@ def display_prime(number):
             prime_list.append(str(iterator))
     t1 = time.time()
     print("Execution time:", t1 - t0)
-    return jsonify(prime_list)
+    return str(prime_list)
 
 
 if __name__ ==  "__main__":
