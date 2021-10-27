@@ -1,6 +1,5 @@
 import time
 from flask import Flask
-from flask import jsonify
 
 
 app = Flask(__name__)
@@ -11,7 +10,7 @@ bounds_error = "The number you entered is out of bounds."
 
 @app.route('/')
 def index():
-    return jsonify(welcome_message)
+    return str(welcome_message)
 
 
 @app.route('/prime/<int:number>', methods=['GET'])
@@ -21,7 +20,7 @@ def display_prime(number):
     # in prime[i] will finally be false if i is
     # not a prime, else true.
     if number <= 1:
-        return jsonify(bounds_error)
+        return str(bounds_error)
 
     prime = [True] * int(number + 1)
     prime_index = 2
