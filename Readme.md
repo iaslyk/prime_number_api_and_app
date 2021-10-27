@@ -3,7 +3,7 @@
 
 This is a project that uses Flask made RESTful api to generate prime numbers between 2 and n, where n is user inputed integer.
 
-## Requirements:
+## Requirements
     python_version: "3.9"
     pipenv
     Use pipenv to install dependencies from Pipfile with command pipenv install
