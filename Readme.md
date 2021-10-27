@@ -1,4 +1,4 @@
-###### Restful Api for prime numbers created with Flask
+# Restful Api for prime numbers created with Flask
 
 
 This is a project that uses Flask made RESTful api to generate prime numbers between 2 and n, where n is user inputed integer.
