@@ -15,33 +15,19 @@ def index():
 
 @app.route('/prime/<int:number>', methods=['GET'])
 def display_prime(number):
-    # Create a boolean array "prime[0..n]" and
-    # initialize all entries it as true. A value
-    # in prime[i] will finally be false if i is
-    # not a prime, else true.
     if number <= 1:
         return str(bounds_error)
 
-    prime = [True] * int(number + 1)
-    prime_index = 2
     t0 = time.time()
-    while prime_index * prime_index <= number + 1:
-        # If prime[primeIndex] is not changed, then it is
-        # a prime
-        if prime[prime_index]:
-            # Update all multiples of prime index.
-            for i in range(prime_index * prime_index, number + 1, prime_index):
-                prime[i] = False
-        prime_index += 1
-    # add all prime numbers to the list to be printed
-    prime_list = []
-    for iterator in range(2, number + 1):
-        if prime[iterator]:
-            prime_list.append(str(iterator))
-    t1 = time.time()
-    print("Execution time:", t1 - t0)
-    return str(prime_list)
-
+    prime_numbers = [2,3]
+    if number < 3:
+        return prime_numbers[:number]
+    for i in range(2, number):
+        next_pn = prime_numbers[-1] + 2
+        while any(not(next_pn%pn) for pn in prime_numbers):
+            next_pn += 2
+        prime_numbers.append(next_pn)
+    return str(prime_numbers)
 
 if __name__ ==  "__main__":
     app.run(debug=True)
