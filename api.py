@@ -1,5 +1,5 @@
 import time
-from flask import Flask
+from flask import Flask, render_template, url_for
 from flask_caching import Cache
 
 # Flask_Cache config
@@ -10,7 +10,7 @@ config = {
 }
 
 # Initializing Flask API and Flask_Cache
-app = Flask(__name__)
+app = Flask(__name__, template_folder="templates")
 app.config.from_mapping(config)
 cache = Cache(app)
 
@@ -18,21 +18,25 @@ cache = Cache(app)
 welcome_message = "Welcome! Enter the url/prime/int to see your list of prime numbers."
 bounds_error = "The number you entered is out of bounds."
 cache_cleared = "Cache has been cleared."
-cache_time = input("Enter cache time (in seconds): ")
-cache_time = int(cache_time)
 
 
 # Welcome route
 @app.route('/')
 def index():
-    return str(welcome_message)
+    # Landing page
+    return render_template(
+        'index.html'
+    )
 
 
-# Prime number route
+cache_time = input("Enter cache time (in seconds): ")
+cache_time = int(cache_time)
+
+
+# Prime number generator route
 @app.route('/prime/<int:number>', methods=['GET'])
-@cache.cached(timeout=cache_time)
+@cache.cached(timeout=cache_time, key_prefix='prime_numbers')
 def display_prime(number):
-    
     if number < 1:
         return str(bounds_error)
     # Start timer
@@ -49,6 +53,12 @@ def display_prime(number):
     t1 = time.time()
     print("Execution time:", t1 - t0)
     return str(prime_numbers)
+
+
+@app.route('/primes', methods=['GET', 'POST'])
+def primes():
+    return render_template('primes.html')
+
 
 
 # Clearing cache

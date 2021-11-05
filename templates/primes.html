@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+
+  <head>
+    <title>Prime Numbers</title>
+    <meta charset="utf-8">
+      <link href="/static/styles.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+    <header>
+       <nav>
+        <a href="/">Main Page</a>
+        <a href="/prime/clear">Clear Cache</a>
+      </nav>
+    </header>
+    <div class="container">
+        <br>
+        <hr>
+        <form action="/prime/" method="GET">
+            <label for="prime">Generate first <i>N</i> prime numbers</label>
+            <input name="prime" id="prime" type="number" value="{{ prime }}">
+            <input type="submit" value="Submit">
+        </form>
+
+    </div>
+  </body>
+
+</html>
